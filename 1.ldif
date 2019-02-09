@@ -1,0 +1,55 @@
+version: 1
+
+dn: dc=example,dc=com
+objectclass: top
+objectclass: domain
+dc: example
+
+dn: cn=user2,cn=user,ou=Groups,dc=example,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: user2
+sn: user2
+o: user
+uid: user2
+userPassword: {SSHA}jElVx+1GpQW8pgNOH/+UHZinqjEcSGSgQMO9sg==
+
+dn: cn=user1,cn=admin,ou=Groups,dc=example,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: user1
+sn: user1
+uid: user1
+userPassword: {SSHA}YxTs7QuGC4zxf4J5dP7J1DUfZiY1AhlNXxi93g==
+
+dn: cn=user,ou=Groups,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+cn: user
+member: ou=Groups,dc=example,dc=com
+
+dn: cn=user2,cn=user,ou=Groups,dc=example,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: user2
+sn: user1
+uid: user1
+userPassword: {MD5}JMnhXlKvxHwiW3V+e+4fnQ==
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Groups
+
+dn: cn=admin,ou=Groups,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+cn: admin
+member: ou=Groups,dc=example,dc=com
+
