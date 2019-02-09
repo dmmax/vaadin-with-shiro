@@ -21,12 +21,6 @@ import java.util.Set;
 
 public class CustomActiveDirectoryRealm extends ActiveDirectoryRealm {
 
-    public CustomActiveDirectoryRealm() {
-        super();
-
-        setCredentialsMatcher(new AllowAllCredentialsMatcher());
-    }
-
     @Override
     protected AuthenticationInfo queryForAuthenticationInfo(AuthenticationToken token, LdapContextFactory ldapContextFactory) throws NamingException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
