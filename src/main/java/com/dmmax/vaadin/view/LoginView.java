@@ -44,14 +44,12 @@ public class LoginView extends VerticalLayout {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             try {
                 currentUser.login(token);
-                System.out.println("===========");
                 currentUser.getSession().getAttributeKeys().forEach(action -> System.out.println(action + ":" + currentUser.getSession().getAttribute(action)));
-                System.out.println("===========");
-                System.out.println(currentUser.getPrincipals().getRealmNames());
+
                 for (String realmName : currentUser.getPrincipals().getRealmNames()) {
                     System.out.println(currentUser.getPrincipals().fromRealm(realmName));
                 }
-                System.out.println("===========");
+
                 if (currentUser.hasRole("admin")) {
                     getUI().ifPresent(ui -> ui.navigate(AdminView.class));
                 } else if (currentUser.hasRole("user")) {
