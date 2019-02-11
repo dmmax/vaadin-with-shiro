@@ -5,6 +5,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -44,10 +45,11 @@ public class LoginView extends VerticalLayout {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             try {
                 currentUser.login(token);
-                currentUser.getSession().getAttributeKeys().forEach(action -> System.out.println(action + ":" + currentUser.getSession().getAttribute(action)));
 
-                for (String realmName : currentUser.getPrincipals().getRealmNames()) {
-                    System.out.println(currentUser.getPrincipals().fromRealm(realmName));
+                if (currentUser.isAuthenticated()) {
+                    for (String realmName : currentUser.getPrincipals().getRealmNames()) {
+                        System.out.println(realmName + ", " + currentUser.getPrincipals().fromRealm(realmName));
+                    }
                 }
 
                 if (currentUser.hasRole("admin")) {
@@ -61,8 +63,6 @@ public class LoginView extends VerticalLayout {
             } catch (LockedAccountException lae) {
                 Notification.show("The account for username " + token.getPrincipal() + " is locked.  " +
                         "Please contact your administrator to unlock it.");
-            } catch (AuthenticationException e) {
-                e.printStackTrace();
             }
         } else {
             Notification.show("Already authed");

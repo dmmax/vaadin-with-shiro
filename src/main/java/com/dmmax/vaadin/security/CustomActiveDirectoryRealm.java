@@ -2,8 +2,8 @@ package com.dmmax.vaadin.security;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.activedirectory.ActiveDirectoryRealm;
 import org.apache.shiro.realm.ldap.LdapContextFactory;
@@ -21,39 +21,45 @@ import java.util.Set;
 
 public class CustomActiveDirectoryRealm extends ActiveDirectoryRealm {
 
+    private String personSearchFilter;
+
     @Override
     protected AuthenticationInfo queryForAuthenticationInfo(AuthenticationToken token, LdapContextFactory ldapContextFactory) throws NamingException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
-        String userDn = getUserDn(upToken.getUsername(), ldapContextFactory);
-        if (userDn != null) {
-            upToken.setUsername(userDn);
-        }
+        try {
+            String userDn = getUserDn(upToken.getUsername(), ldapContextFactory);
+            if (userDn != null) {
+                upToken.setUsername(userDn);
+            }
 
-        return super.buildAuthenticationInfo(userDn, upToken.getPassword());
+            return super.buildAuthenticationInfo(userDn, upToken.getPassword());
+        } catch (IncorrectCredentialsException e) {
+            return null;
+        }
     }
 
     private String getUserDn(String username, LdapContextFactory ldapContextFactory) throws NamingException {
+
         if (!StringUtils.hasText(username)) {
             throw new IllegalArgumentException("Username should be with text!");
         }
 
         LdapContext ctx = ldapContextFactory.getSystemLdapContext();
-
         SearchControls controls = new SearchControls();
         controls.setSearchScope(SearchControls.SUBTREE_SCOPE);
         controls.setCountLimit(1);
 
-        String searchString = "(&(objectClass=person)(cn=" + username + "))";
+        String searchFilter = this.personSearchFilter == null ? "(&(objectClass=person)(cn={0}))" : personSearchFilter;
 
-        NamingEnumeration<SearchResult> search = ctx.search(searchBase, searchString, controls);
+        NamingEnumeration<SearchResult> search = ctx.search(searchBase, searchFilter, new String[]{username}, controls);
         if (search.hasMore()) {
             SearchResult result = search.next();
 
             return result.getNameInNamespace();
+        } else {
+            throw new IncorrectCredentialsException();
         }
-
-        return username;
     }
 
     @Override
@@ -68,5 +74,9 @@ public class CustomActiveDirectoryRealm extends ActiveDirectoryRealm {
             dn = userDn.substring(userDn.indexOf(",") + 1);
         }
         return new HashSet<>(getRoleNamesForGroups(Collections.singleton(dn)));
+    }
+
+    public void setPersonSearchFilter(String personSearchFilter) {
+        this.personSearchFilter = personSearchFilter;
     }
 }
