@@ -1,18 +1,11 @@
-package com.dmmax.vaadin.view;
+package com.dmmax.vaadin.view.secured;
 
 import com.dmmax.vaadin.exception.AccessDeniedException;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.ErrorParameter;
-import com.vaadin.flow.router.HasErrorParameter;
-import com.vaadin.flow.router.ParentLayout;
 import org.apache.shiro.SecurityUtils;
 
 import javax.annotation.Nonnull;
-import javax.servlet.http.HttpServletResponse;
 
 public class SimpleSecuredView extends VerticalLayout {
 

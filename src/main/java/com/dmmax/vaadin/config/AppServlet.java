@@ -28,11 +28,13 @@ public class AppServlet extends VaadinServlet {
         final ServletContext context = getServletContext();
         final Object routeRegistryObject = context.getAttribute(RouteRegistry.class.getName());
 
-        if (routeRegistryObject == null)
+        if (routeRegistryObject == null) {
             throw new ServletException("routeRegistryObject is null");
+        }
 
-        if ((routeRegistryObject instanceof RouteRegistry) == false)
+        if (!(routeRegistryObject instanceof RouteRegistry)) {
             throw new ServletException("routeRegistryObject is not of type RouteRegistry");
+        }
 
         final RouteRegistry routeRegistry = (RouteRegistry) routeRegistryObject;
 
@@ -66,7 +68,8 @@ public class AppServlet extends VaadinServlet {
 
         this.routeClasses = new HashSet<>();
 
-        for (final Class<?> clazz : routeClasses)
+        for (final Class<?> clazz : routeClasses) {
             this.routeClasses.add((Class<? extends Component>) clazz);
+        }
     }
 }

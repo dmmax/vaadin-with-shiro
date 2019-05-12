@@ -1,4 +1,4 @@
-package com.dmmax.vaadin.view;
+package com.dmmax.vaadin.view.secured;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;

@@ -1,7 +1,7 @@
 package com.dmmax.vaadin.view.error;
 
 import com.dmmax.vaadin.exception.AccessDeniedException;
-import com.dmmax.vaadin.view.LoginView;
+import com.dmmax.vaadin.view.secured.LoginView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;

@@ -1,19 +1,19 @@
-package com.dmmax.vaadin.view;
+package com.dmmax.vaadin.view.secured;
 
+import com.dmmax.vaadin.view.MainView;
+import com.dmmax.vaadin.view.secured.AdminView;
+import com.dmmax.vaadin.view.secured.UserView;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 @Route("login")
@@ -35,7 +35,9 @@ public class LoginView extends VerticalLayout {
         Button btnLogin = new Button("Login", event -> auth(tfUsername.getValue(), tfPassword.getValue()));
         btnLogin.focus();
 
-        add(tfUsername, tfPassword, btnLogin);
+        Button btnGoToMain = new Button("Go to Main page", event -> UI.getCurrent().navigate(MainView.class));
+
+        add(tfUsername, tfPassword, btnLogin, btnGoToMain);
     }
 
     private void auth(String username, String password) {

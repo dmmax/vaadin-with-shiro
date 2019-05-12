@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://capriza.github.io/samling/samling.html">
+    <md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDCTCCAnKgAwIBAgIBATANBgkqhkiG9w0BAQUFADBvMRQwEgYDVQQDEwtjYXByaXphLmNvbTELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMRAwDgYDVQQKEwdTYW1saW5nMRAwDgYDVQQLEwdTYW1saW5nMB4XDTE5MDUxMDA2NTg1N1oXDTIwMDUxMDA2NTg1N1owbzEUMBIGA1UEAxMLY2Fwcml6YS5jb20xCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhWaXJnaW5pYTETMBEGA1UEBxMKQmxhY2tzYnVyZzEQMA4GA1UEChMHU2FtbGluZzEQMA4GA1UECxMHU2FtbGluZzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAn0fpt4oj8Jj4+fC8LmHPvWZ+tODGs4prkTkYCn78fzg613cQ42x8ByxwPenMudKWpoQep35tu4WWNZ42MLBkkkfF6JFFT5d0ge40BdlaD16K7vYy+NZuoPR9cY5uJMWUn308gpA4L/r3LETPyTZ2SHeRLF8OakcOLwVXwXl+PO0CAwEAAaOBtDCBsTAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DA7BgNVHSUENDAyBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMDBggrBgEFBQcDBAYIKwYBBQUHAwgwEQYJYIZIAYb4QgEBBAQDAgD3MCUGA1UdEQQeMByGGmh0dHA6Ly9jYXByaXphLmNvbS9zYW1saW5nMB0GA1UdDgQWBBTO17/Hw1haITkB/Jcpzs4z+VDLWDANBgkqhkiG9w0BAQUFAAOBgQB2fE8lZLVf0cPnznb5i6Ll1dM+uqAcD6CFRD/Sk793Ci2JO1E67xR+Pzimb8R10lsTY8iteLGqXnzXDslCQnUYOkIzmtLvUoK8Ml+lEmWVrmwBhjtfdu2qWZ4L7kocnn6a6igjFcXEWVmrnM5fGKnugeSw1rGTYKzHbHMoi/pZvw==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://capriza.github.io/samling/samling.html"/>
+        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://capriza.github.io/samling/samling.html"/>
+    </md:IDPSSODescriptor>
+</md:EntityDescriptor>

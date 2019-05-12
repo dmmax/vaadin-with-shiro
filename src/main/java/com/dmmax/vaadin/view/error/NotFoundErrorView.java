@@ -1,6 +1,6 @@
 package com.dmmax.vaadin.view.error;
 
-import com.dmmax.vaadin.view.LoginView;
+import com.dmmax.vaadin.view.secured.LoginView;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.ErrorParameter;
 import com.vaadin.flow.router.NotFoundException;

@@ -12,24 +12,35 @@ vaadin {
     productionMode = false
 }
 
+gretty {
+    contextPath = '/'
+}
+
 repositories {
+    maven {
+        url "https://build.shibboleth.net/nexus/content/repositories/releases/"
+    }
     vaadin.repositories()
 }
 
 dependencies {
-    compile vaadin.bom()
-    compile vaadin.core()
-    
-    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: "$jetty94Version"
-    compile group: 'org.eclipse.jetty', name: 'jetty-plus', version: "$jetty94Version"
-    compile group: 'org.eclipse.jetty', name: 'jetty-continuation', version: "$jetty94Version"
-    compile group: 'org.eclipse.jetty.websocket', name: 'websocket-server', version: "$jetty94Version"
-    compile group: 'org.eclipse.jetty.websocket', name: 'javax-websocket-server-impl', version: "$jetty94Version"
-    compile group: 'org.reflections', name: 'reflections', version: '0.9.10'
-
+    implementation vaadin.bom()
+    implementation vaadin.core()
     compileOnly vaadin.servletApi()
-    compile vaadin.slf4j()
-    compile group: 'org.vaadin.shiro', name: 'shiro-vaadin-integration', version: '1.0.1'
+    implementation vaadin.slf4j()
+    implementation 'org.vaadin.shiro:shiro-vaadin-integration:1.0.2'
+    
+    implementation "org.eclipse.jetty:jetty-server:$jetty94Version"
+    implementation "org.eclipse.jetty:jetty-plus:$jetty94Version"
+    implementation "org.eclipse.jetty:jetty-continuation:$jetty94Version"
+    implementation "org.eclipse.jetty.websocket:websocket-server:$jetty94Version"
+    implementation "org.eclipse.jetty.websocket:javax-websocket-server-impl:$jetty94Version"
+    implementation 'org.reflections:reflections:0.9.10'
+
+    implementation 'io.buji:buji-pac4j:4.1.0'
+    implementation 'org.pac4j:pac4j-saml:3.4.0'
+
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
 /**
