@@ -11,11 +11,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.pac4j.core.profile.CommonProfile;
 
-@Route(value = "user", layout = Saml2CommonView.class)
-@PageTitle("SAML 2 User page")
-public class Saml2UserView extends VerticalLayout {
+@Route(value = "capriza", layout = Saml2CommonView.class)
+@PageTitle("SAML 2 CAPRIZA page")
+public class Saml2CarprizaView extends VerticalLayout {
 
-    public Saml2UserView() {
+    public Saml2CarprizaView() {
         super();
 
         Subject subject = SecurityUtils.getSubject();
@@ -24,10 +24,6 @@ public class Saml2UserView extends VerticalLayout {
             if (principal != null) {
                 add(new Label("Successfully auth!"));
                 add(new Label("User: " + principal.getName()));
-                add(new Button("Logout", event -> {
-                    SecurityUtils.getSubject().logout();
-                    getUI().ifPresent(ui -> ui.navigate(MainView.class));
-                }));
             }
         } else {
             add(new Label("Can't auth using SAML"));

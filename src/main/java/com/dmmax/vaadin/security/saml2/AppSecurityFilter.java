@@ -1,4 +1,4 @@
-package com.dmmax.vaadin.security;
+package com.dmmax.vaadin.security.saml2;
 
 import io.buji.pac4j.filter.SecurityFilter;
 import org.pac4j.saml.exceptions.SAMLException;

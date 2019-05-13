@@ -1,6 +1,7 @@
 package com.dmmax.vaadin.view.error;
 
 import com.dmmax.vaadin.exception.AccessDeniedException;
+import com.dmmax.vaadin.view.MainView;
 import com.dmmax.vaadin.view.secured.LoginView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
@@ -24,7 +25,7 @@ public class AccessDeniedErrorView extends Component
 
         VerticalLayout contentError = new VerticalLayout();
         contentError.add(new Label("Tried to navigate to a view without correct access rights. Error message: " + parameter.getCustomMessage()));
-        contentError.add(new Button("Go to login page", event -> beforeEnterEvent.getUI().navigate(LoginView.class)));
+        contentError.add(new Button("Go to MAIN page", event -> beforeEnterEvent.getUI().navigate(MainView.class)));
 
         getElement().appendChild(contentError.getElement());
 
